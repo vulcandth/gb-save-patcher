@@ -2,6 +2,7 @@
 name = "gb-save-cli"
 version = "0.1.0"
 edition.workspace = true
+authors.workspace = true
 license.workspace = true
 repository.workspace = true
 
@@ -10,5 +11,5 @@ description = "Game-agnostic CLI shell for Game Boy save patching."
 [dependencies]
 anyhow.workspace = true
 clap.workspace = true
-gb-save-core = { path = "../gb-save-core" }
+gb-save-core = { version = "0.1.0", path = "../gb-save-core" }
 serde_json.workspace = true

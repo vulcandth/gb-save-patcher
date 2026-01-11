@@ -13,7 +13,7 @@ exclude = [
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/matth/gb-save-patcher"
-authors = ["matth"]
+authors = ["vulcandth <vulcandth@gmail.com>"]
 
 [workspace.dependencies]
 anyhow = "1"
