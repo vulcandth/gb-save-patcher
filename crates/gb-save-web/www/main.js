@@ -1,4 +1,4 @@
-import { SITE_CONFIG } from "./config.js";
+﻿import { SITE_CONFIG } from "./config.js";
 
 const ui = {
   advancedBox: document.getElementById("advancedBox"),
@@ -338,7 +338,7 @@ async function boot() {
 
 boot();
 
-function applyTheme(patcher) {
+function applyPatcherTheme(patcher) {
   const theme = patcher.theme ?? {};
   for (const [key, value] of Object.entries(theme)) {
     document.documentElement.style.setProperty(key, value);
@@ -606,7 +606,7 @@ function onPatcherChanged() {
   state.patcherId = ui.patcherSelect.value;
   const patcher = currentPatcher();
 
-  applyTheme(patcher);
+  applyPatcherTheme(patcher);
   ui.patcherId.textContent = patcher.id;
   ui.patcherBlurb.textContent = patcher.blurb;
   refreshTargets();
@@ -687,7 +687,7 @@ async function boot() {
 
   {
     const patcher = currentPatcher();
-    applyTheme(patcher);
+    applyPatcherTheme(patcher);
     ui.patcherId.textContent = patcher.id;
     ui.patcherBlurb.textContent = patcher.blurb;
     refreshTargets();
@@ -726,3 +726,4 @@ async function boot() {
 }
 
 boot();
+
