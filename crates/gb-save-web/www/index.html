@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Save Patcher</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <h2 id="gameTitle" style="margin-bottom: 4px;">Save Patcher</h2>
+          <div id="gameSubtitle" class="small"></div>
+        </div>
+
+        <div class="topbar-right">
+          <a
+            class="github-link"
+            id="githubLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View source on GitHub"
+          >
+            <span id="githubLinkLabel">View source</span>
+          </a>
+        </div>
+      </header>
+
+      <div style="height: 14px;"></div>
+
+      <section class="panel">
+        <div class="row">
+          <div>
+            <label>Patcher status</label>
+            <div id="wasmState" class="mono">loading…</div>
+          </div>
+
+          <div>
+            <label>Detected save version</label>
+            <div id="detectedVersion" class="mono">(unknown)</div>
+          </div>
+        </div>
+
+        <div style="height: 14px;"></div>
+
+        <div id="instructions" class="notice">
+          <div style="font-weight: 600; margin-bottom: 6px;">Recommended steps</div>
+          <ol id="instructionsList" style="margin: 0; padding-left: 18px; color: var(--muted);"></ol>
+        </div>
+
+        <div style="height: 14px;"></div>
+
+        <div>
+          <label for="inputFile">Your save file</label>
+          <div id="dropZone" class="drop-zone" tabindex="0" role="button">
+            <div style="font-weight: 700;">Choose a save file</div>
+            <div id="dropZoneHint" class="small"></div>
+            <input id="inputFile" type="file" accept=".sav,.srm" />
+          </div>
+          <div id="inputMeta" class="small mono">(none)</div>
+          <div class="small" style="margin-top: 6px;">No data is uploaded anywhere.</div>
+        </div>
+
+        <div style="height: 14px;"></div>
+
+        <div class="row">
+          <div>
+            <label for="targetVersion">Target version</label>
+            <select id="targetVersion"></select>
+          </div>
+
+          <div id="advancedBox" style="display:none;">
+            <label for="devType">Fix patch (advanced)</label>
+            <input id="devType" type="number" min="0" max="255" value="0" />
+            <div class="small" style="margin-top: 6px;">
+              Use advanced fixes only if you were told to.
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 14px;"></div>
+
+        <div class="actions">
+          <button id="patchBtn" disabled>Patch</button>
+          <a id="downloadLink" class="button-link" href="#" download style="display:none;">Download patched save</a>
+          <button id="downloadLogBtn" disabled>Download log</button>
+          <button id="clearLogBtn" type="button">Clear log</button>
+        </div>
+
+        <div style="height: 14px;"></div>
+
+        <div id="status" class="notice" role="status"></div>
+
+        <div style="height: 14px;"></div>
+
+        <details class="details">
+          <summary>Details</summary>
+          <div style="height: 10px;"></div>
+          <label>Log</label>
+          <pre id="logOutput" class="log" aria-label="Patch log"></pre>
+          <div style="height: 10px;"></div>
+          <div class="kv">
+            <div>Output</div>
+            <div id="outputMeta" class="mono">(none)</div>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

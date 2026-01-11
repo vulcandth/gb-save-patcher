@@ -1,0 +1,18 @@
+[package]
+name = "gb-save-web"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+description = "Game-agnostic WASM helpers for browser-based save patchers."
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+gb-save-core = { path = "../gb-save-core" }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2"
+js-sys = "0.3"

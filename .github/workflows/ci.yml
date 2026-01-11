@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: cargo fmt
+        run: cargo fmt --all -- --check
+
+      - name: cargo clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: cargo test
+        run: cargo test --all
+
+      - name: Build wasm
+        run: |
+          rustup target add wasm32-unknown-unknown
+          cargo build -p gb-save-web --target wasm32-unknown-unknown
+
+  core_cli_web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: cargo test (core/cli/web)
+        run: cargo test -p gb-save-core -p gb-save-cli -p gb-save-web
+
+      - name: cargo clippy (core/cli/web)
+        run: cargo clippy -p gb-save-core -p gb-save-cli -p gb-save-web --all-targets --all-features -- -D warnings
+
+      - name: cargo doc (core/cli/web)
+        run: cargo doc -p gb-save-core -p gb-save-cli -p gb-save-web --no-deps

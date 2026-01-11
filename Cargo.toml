@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = [
+  "crates/gb-save-core",
+  "crates/gb-save-cli",
+  "crates/gb-save-web",
+]
+exclude = [
+  "examples/gb-save-game-template",
+]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/matth/gb-save-patcher"
+authors = ["matth"]
+
+[workspace.dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+thiserror = "2"
+flate2 = "1"
+serde_json = "1"
+
+# wasm-only deps live in gb-save-web Cargo.toml
